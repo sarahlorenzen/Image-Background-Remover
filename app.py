@@ -283,6 +283,13 @@ light_theme_css = """
     .stRadio label p {
         color: #262730 !important;
     }
+    /* Download filename info text styling for light theme only */
+    .stAlert[data-baseweb="notification"] .stMarkdown,
+    .stAlert .stMarkdown p,
+    div[data-testid="stAlert"] .stMarkdown,
+    div[data-testid="stAlert"] p {
+        color: #262730 !important;
+    }
     /* Additional CSS to force text color - Updated */
     * {
         --text-color: #262730 !important;
