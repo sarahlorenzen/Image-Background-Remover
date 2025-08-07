@@ -625,7 +625,6 @@ def process_image(uploaded_file):
         # Calculate processing time
         processing_time = time.time() - start_time
         
-        status_text.text("✅ Background removed successfully!")
         progress_bar.progress(100)
         
         # Display results
