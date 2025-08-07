@@ -179,7 +179,17 @@ light_theme_css = """
         background-color: #2E7D32 !important;
         border-color: #2E7D32 !important;
     }
-
+    /* Override theme toggle styling for primary buttons specifically */
+    .stButton > button[kind="primary"] {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stButton > button[kind="primary"]:hover {
+        background-color: #2E7D32 !important;
+        border-color: #2E7D32 !important;
+        color: white !important;
+    }
     .stDownloadButton > button {
         background-color: #4CAF50 !important;
         border-color: #4CAF50 !important;
@@ -250,6 +260,17 @@ light_theme_css = """
     .element-container .stButton button:hover {
         background-color: #686868 !important;
         border: 1px solid #686868 !important;
+        color: white !important;
+    }
+    /* Process All Images button override - must come after theme toggle styling */
+    .stButton button[kind="primary"] {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stButton button[kind="primary"]:hover {
+        background-color: #2E7D32 !important;
+        border-color: #2E7D32 !important;
         color: white !important;
     }
     /* Radio button text styling for light mode */
