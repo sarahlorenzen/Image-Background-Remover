@@ -225,6 +225,13 @@ light_theme_css = """
         border: 1px solid #aaaaaa !important;
         color: white !important;
     }
+    /* Radio button text styling for light mode */
+    .stRadio label span {
+        color: #262730 !important;
+    }
+    .stRadio div[role="radiogroup"] label {
+        color: #262730 !important;
+    }
 </style>
 """
 
