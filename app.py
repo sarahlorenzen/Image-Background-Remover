@@ -41,10 +41,7 @@ dark_theme_css = """
         margin-top: 0.5rem;
         color: #fafafa;
     }
-    /* Reduce empty space above title */
-    .stApp > div:first-child {
-        padding-top: 0.5rem !important;
-    }
+    /* Reduce empty space above title - keeping button visible */
     .block-container {
         padding-top: 1rem !important;
     }
@@ -167,10 +164,7 @@ light_theme_css = """
         margin-top: 0.5rem;
         color: #262730;
     }
-    /* Reduce empty space above title */
-    .stApp > div:first-child {
-        padding-top: 0.5rem !important;
-    }
+    /* Reduce empty space above title - keeping button visible */
     .block-container {
         padding-top: 1rem !important;
     }
