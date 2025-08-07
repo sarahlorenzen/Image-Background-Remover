@@ -70,6 +70,15 @@ dark_theme_css = """
         background-color: #45a049 !important;
         border-color: #45a049 !important;
     }
+    .stFileUploader > div > div > div > button {
+        background-color: #004182 !important;
+        color: white !important;
+        border-color: #004182 !important;
+    }
+    .stFileUploader > div > div > div > button:hover {
+        background-color: #003366 !important;
+        border-color: #003366 !important;
+    }
     .stRadio > div {
         background-color: #1e1e1e;
         border-radius: 8px;
@@ -136,6 +145,15 @@ light_theme_css = """
     .stDownloadButton > button:hover {
         background-color: #45a049 !important;
         border-color: #45a049 !important;
+    }
+    .stFileUploader > div > div > div > button {
+        background-color: #004182 !important;
+        color: white !important;
+        border-color: #004182 !important;
+    }
+    .stFileUploader > div > div > div > button:hover {
+        background-color: #003366 !important;
+        border-color: #003366 !important;
     }
     .stRadio > div {
         background-color: #f8f9fa;
