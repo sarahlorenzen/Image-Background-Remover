@@ -7,7 +7,7 @@ import numpy as np
 
 # Configure page
 st.set_page_config(
-    page_title="Remove Background from Your Image",
+    page_title="Image Background Remover",
     page_icon="🖼️",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -36,7 +36,7 @@ st.markdown("""
 def main():
     # Main header
     st.markdown('<div class="main-header">', unsafe_allow_html=True)
-    st.title("🖼️ Remove background from your image")
+    st.title("🖼️ Image Background Remover")
     st.markdown("✨ Advanced multi-algorithm background removal with professional-quality results. Upload an image to experience precision edge detection and smooth transparency.")
     st.markdown("This tool combines 6 different computer vision techniques for superior background removal quality.")
     st.markdown('</div>', unsafe_allow_html=True)
