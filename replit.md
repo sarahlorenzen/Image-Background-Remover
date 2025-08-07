@@ -1,6 +1,6 @@
 # Overview
 
-This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application uses OpenCV's GrabCut algorithm to perform automatic background removal. Users can upload images in common formats (PNG, JPG, JPEG) and download the processed images with transparent backgrounds. The app features a clean, user-friendly interface with drag-and-drop functionality and real-time processing feedback.
+This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application uses a sophisticated multi-algorithm approach combining OpenCV's GrabCut algorithm, edge detection, color segmentation, morphological operations, and anti-aliasing techniques to achieve professional-quality background removal. Users can upload images in common formats (PNG, JPG, JPEG) and download the processed images with smooth, transparent backgrounds. The app features a clean, user-friendly interface with drag-and-drop functionality and detailed real-time processing feedback.
 
 # User Preferences
 
@@ -15,11 +15,17 @@ Preferred communication style: Simple, everyday language.
 - **Layout**: Wide layout configuration with collapsed sidebar for maximum image viewing area
 
 ## Backend Architecture
-- **Core Processing**: Python-based backend using OpenCV's GrabCut algorithm for background removal
+- **Core Processing**: Advanced multi-algorithm background removal system using:
+  1. **GrabCut Algorithm**: Graph-cut based segmentation with intelligent initialization
+  2. **Edge Detection**: Canny edge detection for boundary refinement
+  3. **Color Segmentation**: HSV-based color analysis for improved object detection
+  4. **Morphological Operations**: Noise reduction, hole filling, and mask refinement
+  5. **Anti-aliasing**: Gaussian blur and distance transform for smooth edge transitions
+  6. **Gradient Blending**: Professional-quality alpha channel generation
 - **Image Processing Pipeline**:
-  - OpenCV for computer vision and background segmentation
+  - OpenCV for advanced computer vision algorithms
   - PIL (Python Imaging Library) for image manipulation and format conversion
-  - NumPy for efficient array operations on image data
+  - NumPy for efficient array operations and mathematical transformations
   - IO module for in-memory file handling to avoid filesystem operations
 - **Session Management**: Streamlit's built-in session state for maintaining user interactions
 
