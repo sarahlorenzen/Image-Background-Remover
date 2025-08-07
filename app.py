@@ -598,7 +598,6 @@ def process_image(uploaded_file):
         status_text = st.empty()
         
         # Load the image
-        status_text.text("📖 Loading image...")
         progress_bar.progress(25)
         
         # Open image with PIL
