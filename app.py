@@ -117,8 +117,8 @@ dark_theme_css = """
     section[data-testid="stFileUploader"] label button:hover,
     div[data-testid="stFileUploader"] button:hover,
     div[data-testid="stFileUploader"] label button:hover {
-        background-color: #003366 !important;
-        border: 1px solid #003366 !important;
+        background-color: #b13979 !important;
+        border: 1px solid #b13979 !important;
     }
 </style>
 """
@@ -211,8 +211,8 @@ light_theme_css = """
     section[data-testid="stFileUploader"] label button:hover,
     div[data-testid="stFileUploader"] button:hover,
     div[data-testid="stFileUploader"] label button:hover {
-        background-color: #003366 !important;
-        border: 1px solid #003366 !important;
+        background-color: #b13979 !important;
+        border: 1px solid #b13979 !important;
     }
 </style>
 """
