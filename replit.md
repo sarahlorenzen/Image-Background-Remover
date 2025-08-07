@@ -1,0 +1,50 @@
+# Overview
+
+This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application leverages the rembg library to perform automatic background removal using machine learning models. Users can upload images in common formats (PNG, JPG, JPEG) and download the processed images with transparent backgrounds. The app features a clean, user-friendly interface with drag-and-drop functionality and real-time processing feedback.
+
+# User Preferences
+
+Preferred communication style: Simple, everyday language.
+
+# System Architecture
+
+## Frontend Architecture
+- **Framework**: Streamlit - chosen for rapid prototyping and simple deployment of ML applications
+- **UI Components**: Native Streamlit widgets including file uploader, progress bars, and download buttons
+- **Styling**: Custom CSS injected via st.markdown for enhanced visual appeal while maintaining Streamlit's responsive design
+- **Layout**: Wide layout configuration with collapsed sidebar for maximum image viewing area
+
+## Backend Architecture
+- **Core Processing**: Python-based backend using the rembg library for background removal
+- **Image Processing Pipeline**:
+  - PIL (Python Imaging Library) for image manipulation and format conversion
+  - NumPy for efficient array operations on image data
+  - IO module for in-memory file handling to avoid filesystem operations
+- **Session Management**: Streamlit's built-in session state for maintaining user interactions
+
+## Data Processing
+- **Image Formats**: Support for PNG, JPG, and JPEG formats
+- **Processing Flow**: Upload → Validation → Background Removal → Format Conversion → Download
+- **Memory Management**: In-memory processing using BytesIO to handle image data without temporary file storage
+
+## Performance Considerations
+- **Progress Tracking**: Visual feedback during processing operations
+- **Efficient Processing**: Direct memory operations to minimize I/O overhead
+- **Error Handling**: Built-in validation for supported file types
+
+# External Dependencies
+
+## Core Libraries
+- **rembg**: Primary background removal library providing pre-trained ML models
+- **Streamlit**: Web application framework for the user interface
+- **PIL (Pillow)**: Image processing and manipulation library
+- **NumPy**: Numerical computing library for array operations
+
+## Runtime Dependencies
+- **Python 3.x**: Runtime environment
+- **Machine Learning Models**: Pre-trained models from the rembg library (downloaded automatically)
+
+## Deployment Considerations
+- **Streamlit Cloud**: Designed for easy deployment on Streamlit's hosting platform
+- **Resource Requirements**: GPU acceleration optional but recommended for faster processing
+- **Model Storage**: Automatic model downloading and caching by rembg library
