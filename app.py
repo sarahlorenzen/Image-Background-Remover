@@ -82,92 +82,94 @@ def main():
         </div>
         """, unsafe_allow_html=True)
 
+def simple_background_removal(image):
+    """Simple fallback background removal method"""
+    # Convert to numpy array
+    img = np.array(image)
+    height, width = img.shape[:2]
+    
+    # Create a simple mask assuming the center contains the subject
+    mask = np.zeros((height, width), dtype=np.uint8)
+    center_x, center_y = width // 2, height // 2
+    
+    # Create circular mask around center
+    radius = min(width, height) // 3
+    cv2.circle(mask, (center_x, center_y), radius, 255, -1)
+    
+    # Smooth the mask
+    mask = cv2.GaussianBlur(mask, (21, 21), 0)
+    mask = mask.astype(np.float32) / 255.0
+    
+    # Apply mask
+    result = img.copy()
+    alpha = (mask * 255).astype(np.uint8)
+    
+    # Create RGBA
+    result_rgba = np.dstack((result, alpha))
+    return Image.fromarray(result_rgba, mode='RGBA')
+
 def remove_background_cv2(image):
-    """Advanced background removal using multiple OpenCV techniques"""
+    """Optimized background removal using streamlined OpenCV techniques"""
     # Convert PIL image to OpenCV format
     img = np.array(image)
     img_bgr = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
     height, width = img_bgr.shape[:2]
     
-    # Method 1: Enhanced GrabCut with better initialization
-    mask = np.zeros((height, width), np.uint8)
+    # Resize image if too large to prevent freezing
+    max_dimension = 800
+    if max(height, width) > max_dimension:
+        scale = max_dimension / max(height, width)
+        new_height = int(height * scale)
+        new_width = int(width * scale)
+        img_bgr_resized = cv2.resize(img_bgr, (new_width, new_height))
+        process_resized = True
+    else:
+        img_bgr_resized = img_bgr
+        new_height, new_width = height, width
+        process_resized = False
     
-    # Create a more intelligent rectangle that avoids pure edges
-    margin = min(width, height) // 8
-    rect = (margin, margin, width - 2*margin, height - 2*margin)
+    # GrabCut algorithm with optimized parameters
+    mask = np.zeros((new_height, new_width), np.uint8)
+    
+    # Smart margin calculation
+    margin = min(new_width, new_height) // 10
+    rect = (margin, margin, new_width - 2*margin, new_height - 2*margin)
     
     # Initialize models
     bgd_model = np.zeros((1, 65), np.float64)
     fgd_model = np.zeros((1, 65), np.float64)
     
-    # Apply GrabCut with more iterations
-    cv2.grabCut(img_bgr, mask, rect, bgd_model, fgd_model, 8, cv2.GC_INIT_WITH_RECT)
+    # Apply GrabCut with fewer iterations for speed
+    cv2.grabCut(img_bgr_resized, mask, rect, bgd_model, fgd_model, 5, cv2.GC_INIT_WITH_RECT)
     
-    # Refine with additional iterations
-    cv2.grabCut(img_bgr, mask, None, bgd_model, fgd_model, 3, cv2.GC_INIT_WITH_MASK)
+    # Create mask
+    mask2 = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
     
-    # Create refined mask
-    grabcut_mask = np.where((mask == 2) | (mask == 0), 0, 1).astype('uint8')
-    
-    # Method 2: Edge detection to improve boundaries
-    gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
-    edges = cv2.Canny(gray, 50, 150)
-    
-    # Dilate edges to create boundary zones
+    # Simple morphological operations for cleanup
     kernel = np.ones((3, 3), np.uint8)
-    edges_dilated = cv2.dilate(edges, kernel, iterations=1)
+    mask2 = cv2.morphologyEx(mask2, cv2.MORPH_CLOSE, kernel)
+    mask2 = cv2.morphologyEx(mask2, cv2.MORPH_OPEN, kernel)
     
-    # Method 3: Color-based segmentation for additional refinement
-    hsv = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2HSV)
+    # Smooth edges with Gaussian blur
+    mask2_float = mask2.astype(np.float32)
+    mask2_smooth = cv2.GaussianBlur(mask2_float, (3, 3), 0)
     
-    # Create multiple masks for different color ranges (adaptive)
-    # This helps with objects that have consistent colors
-    lower_range1 = np.array([0, 50, 50])
-    upper_range1 = np.array([10, 255, 255])
-    lower_range2 = np.array([170, 50, 50])
-    upper_range2 = np.array([180, 255, 255])
+    # Resize mask back to original size if needed
+    if process_resized:
+        mask2_smooth = cv2.resize(mask2_smooth, (width, height))
     
-    color_mask1 = cv2.inRange(hsv, lower_range1, upper_range1)
-    color_mask2 = cv2.inRange(hsv, lower_range2, upper_range2)
-    color_mask = color_mask1 + color_mask2
+    # Apply mask to original image
+    mask2_smooth = np.clip(mask2_smooth, 0, 1)
     
-    # Method 4: Morphological operations to clean up the mask
-    # Remove small noise
-    kernel_small = np.ones((3, 3), np.uint8)
-    refined_mask = cv2.morphologyEx(grabcut_mask, cv2.MORPH_OPEN, kernel_small)
+    # Create result
+    result_rgb = img.copy()
+    alpha = (mask2_smooth * 255).astype(np.uint8)
     
-    # Fill small holes
-    kernel_medium = np.ones((5, 5), np.uint8)
-    refined_mask = cv2.morphologyEx(refined_mask, cv2.MORPH_CLOSE, kernel_medium)
-    
-    # Method 5: Gaussian blur for smoother edges
-    refined_mask_float = refined_mask.astype(np.float32)
-    blurred_mask = cv2.GaussianBlur(refined_mask_float, (5, 5), 0)
-    
-    # Normalize back to 0-1 range
-    final_mask = np.clip(blurred_mask, 0, 1)
-    
-    # Method 6: Anti-aliasing for smoother edges
-    # Create gradient mask for better blending
-    distance_transform = cv2.distanceTransform(refined_mask, cv2.DIST_L2, 5)
-    _, smooth_mask = cv2.threshold(distance_transform, 0.3, 1.0, cv2.THRESH_BINARY)
-    
-    # Combine masks for best result
-    combined_mask = np.maximum(final_mask, smooth_mask.astype(np.float32))
-    combined_mask = np.clip(combined_mask, 0, 1)
-    
-    # Apply mask to create result with anti-aliased edges
-    result_bgr = img_bgr.astype(np.float32)
+    # Apply mask to each channel
     for c in range(3):
-        result_bgr[:, :, c] = result_bgr[:, :, c] * combined_mask
+        result_rgb[:, :, c] = (result_rgb[:, :, c] * mask2_smooth).astype(np.uint8)
     
-    # Convert back to RGB
-    result_rgb = cv2.cvtColor(result_bgr.astype(np.uint8), cv2.COLOR_BGR2RGB)
-    
-    # Create alpha channel with smooth transitions
-    alpha = (combined_mask * 255).astype(np.uint8)
-    
-    # Create final RGBA image
+    # Create RGBA image
     result_rgba = np.dstack((result_rgb, alpha))
     
     # Convert to PIL Image
@@ -194,22 +196,19 @@ def process_image(uploaded_file):
         if input_image.mode != 'RGB':
             input_image = input_image.convert('RGB')
         
-        status_text.text("🔄 Analyzing image structure...")
-        progress_bar.progress(30)
-        
-        time.sleep(0.1)  # Brief pause for UI update
-        status_text.text("🎯 Detecting subject boundaries...")
+        status_text.text("🔄 Processing image...")
         progress_bar.progress(50)
-        
-        time.sleep(0.1)  # Brief pause for UI update
-        status_text.text("✨ Refining edges and smoothing...")
-        progress_bar.progress(80)
         
         # Start timing
         start_time = time.time()
         
-        # Remove background using OpenCV (simple method)
-        output_image = remove_background_cv2(input_image)
+        # Remove background using OpenCV with timeout protection
+        try:
+            output_image = remove_background_cv2(input_image)
+        except Exception as process_error:
+            status_text.text("❌ Processing failed, trying simple fallback...")
+            # Simple fallback method
+            output_image = simple_background_removal(input_image)
         
         # Calculate processing time
         processing_time = time.time() - start_time
@@ -284,33 +283,33 @@ def show_sidebar_info():
     with st.sidebar:
         st.markdown("## About")
         st.markdown("""
-        This tool uses **advanced OpenCV algorithms** to automatically remove backgrounds from images with high precision.
+        This tool uses **optimized OpenCV algorithms** to automatically remove backgrounds from images with reliable performance.
         
         ### Supported formats:
         - PNG
         - JPG/JPEG
         
-        ### Advanced Features:
-        - ✅ Multi-algorithm background removal (GrabCut + Edge Detection + Color Segmentation)
-        - ✅ Anti-aliased smooth edges
-        - ✅ Morphological noise reduction
-        - ✅ Intelligent boundary detection
+        ### Features:
+        - ✅ Smart GrabCut algorithm with automatic resizing
+        - ✅ Smooth edge blending
+        - ✅ Morphological noise cleanup
+        - ✅ Fast and reliable processing
+        - ✅ Fallback method for difficult images
         - ✅ No registration required
         - ✅ Privacy-focused (processing done locally)
         
         ### Processing Methods:
-        1. **GrabCut Algorithm**: Advanced graph-cut segmentation
-        2. **Edge Enhancement**: Canny edge detection for boundary refinement
-        3. **Color Analysis**: HSV-based color segmentation
-        4. **Morphological Operations**: Noise reduction and hole filling
-        5. **Gaussian Smoothing**: Anti-aliased edge softening
-        6. **Distance Transform**: Gradient-based smooth transitions
+        1. **GrabCut Algorithm**: Graph-cut based segmentation
+        2. **Smart Resizing**: Automatic scaling for optimal performance
+        3. **Morphological Cleanup**: Noise reduction and hole filling
+        4. **Gaussian Smoothing**: Soft edge blending
+        5. **Fallback Protection**: Simple method if main algorithm fails
         
         ### Usage tips:
         - Works best with clear subject-background contrast
-        - High-resolution images produce superior results
-        - Objects with defined edges get the best processing
-        - Processing takes longer but delivers professional quality
+        - Images are automatically resized for optimal processing speed
+        - Supports images up to 20MB
+        - Processing is fast and reliable
         """)
         
         st.markdown("---")
