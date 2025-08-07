@@ -11,6 +11,7 @@ Preferred communication style: Simple, everyday language.
 ## Frontend Architecture
 - **Framework**: Streamlit - chosen for rapid prototyping and simple deployment of ML applications
 - **UI Components**: Native Streamlit widgets including file uploader, progress bars, and download buttons
+- **Theme System**: Dynamic dark/light mode toggle with custom CSS themes for optimal user experience
 - **Styling**: Custom CSS injected via st.markdown for enhanced visual appeal while maintaining Streamlit's responsive design
 - **Layout**: Wide layout configuration with collapsed sidebar for maximum image viewing area
 

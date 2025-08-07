@@ -13,19 +13,41 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for better styling (minimal, following Streamlit best practices)
-st.markdown("""
+# Initialize theme state
+if 'dark_mode' not in st.session_state:
+    st.session_state.dark_mode = False
+
+def toggle_theme():
+    st.session_state.dark_mode = not st.session_state.dark_mode
+
+# Theme toggle button in top right
+col1, col2, col3 = st.columns([4, 1, 1])
+with col3:
+    theme_icon = "🌙" if not st.session_state.dark_mode else "☀️"
+    theme_text = "Dark" if not st.session_state.dark_mode else "Light"
+    if st.button(f"{theme_icon} {theme_text}", key="theme_toggle", on_click=toggle_theme, use_container_width=True):
+        pass
+
+# Custom CSS with theme support
+dark_theme_css = """
 <style>
+    .stApp {
+        background-color: #0e1117;
+        color: #fafafa;
+    }
     .main-header {
         text-align: center;
         margin-bottom: 2rem;
+        color: #fafafa;
     }
     .upload-section {
-        border: 2px dashed #cccccc;
+        border: 2px dashed #555555;
         border-radius: 10px;
         padding: 2rem;
         text-align: center;
         margin: 1rem 0;
+        background-color: #1e1e1e;
+        color: #fafafa;
     }
     .stProgress > div > div > div > div {
         background-color: #4CAF50;
@@ -48,8 +70,104 @@ st.markdown("""
         background-color: #45a049 !important;
         border-color: #45a049 !important;
     }
+    .stRadio > div {
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: #1e1e1e;
+    }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #1e1e1e;
+        color: #fafafa;
+    }
+    .stSidebar {
+        background-color: #0e1117;
+    }
+    .stMarkdown {
+        color: #fafafa;
+    }
+    .stMetric {
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        padding: 1rem;
+    }
 </style>
-""", unsafe_allow_html=True)
+"""
+
+light_theme_css = """
+<style>
+    .stApp {
+        background-color: #ffffff;
+        color: #262730;
+    }
+    .main-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #262730;
+    }
+    .upload-section {
+        border: 2px dashed #cccccc;
+        border-radius: 10px;
+        padding: 2rem;
+        text-align: center;
+        margin: 1rem 0;
+        background-color: #f8f9fa;
+        color: #262730;
+    }
+    .stProgress > div > div > div > div {
+        background-color: #4CAF50;
+    }
+    .stButton > button[kind="primary"] {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stButton > button[kind="primary"]:hover {
+        background-color: #45a049 !important;
+        border-color: #45a049 !important;
+    }
+    .stDownloadButton > button {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stDownloadButton > button:hover {
+        background-color: #45a049 !important;
+        border-color: #45a049 !important;
+    }
+    .stRadio > div {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 0.5rem;
+    }
+    .stTabs [data-baseweb="tab-list"] {
+        background-color: #f8f9fa;
+    }
+    .stTabs [data-baseweb="tab"] {
+        background-color: #f8f9fa;
+        color: #262730;
+    }
+    .stSidebar {
+        background-color: #ffffff;
+    }
+    .stMarkdown {
+        color: #262730;
+    }
+    .stMetric {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 1rem;
+    }
+</style>
+"""
+
+# Apply theme
+if st.session_state.dark_mode:
+    st.markdown(dark_theme_css, unsafe_allow_html=True)
+else:
+    st.markdown(light_theme_css, unsafe_allow_html=True)
 
 def main():
     # Main header
