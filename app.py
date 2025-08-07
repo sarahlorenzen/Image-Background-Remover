@@ -30,6 +30,24 @@ st.markdown("""
     .stProgress > div > div > div > div {
         background-color: #4CAF50;
     }
+    .stButton > button[kind="primary"] {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stButton > button[kind="primary"]:hover {
+        background-color: #45a049 !important;
+        border-color: #45a049 !important;
+    }
+    .stDownloadButton > button {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stDownloadButton > button:hover {
+        background-color: #45a049 !important;
+        border-color: #45a049 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
