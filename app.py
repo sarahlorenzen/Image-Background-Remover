@@ -842,3 +842,14 @@ if __name__ == "__main__":
     
     # Run main application
     main()
+    
+    # Footer
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style="text-align: center; margin-top: 2rem; padding: 1rem; color: #666;">
+            2025 © Sarah Lorenzen + <a href="https://replit.com/refer/sarahlorenzen" target="_blank" style="color: #666; text-decoration: none;">Replit</a> + AI
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
