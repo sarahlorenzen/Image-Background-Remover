@@ -70,14 +70,16 @@ dark_theme_css = """
         background-color: #45a049 !important;
         border-color: #45a049 !important;
     }
-    .stFileUploader > div > div > div > button {
+    .stFileUploader label button, .stFileUploader button, .stFileUploader [data-testid="baseButton-secondary"] {
         background-color: #004182 !important;
         color: white !important;
         border-color: #004182 !important;
+        border: 1px solid #004182 !important;
     }
-    .stFileUploader > div > div > div > button:hover {
+    .stFileUploader label button:hover, .stFileUploader button:hover, .stFileUploader [data-testid="baseButton-secondary"]:hover {
         background-color: #003366 !important;
         border-color: #003366 !important;
+        border: 1px solid #003366 !important;
     }
     .stRadio > div {
         background-color: #1e1e1e;
@@ -101,6 +103,22 @@ dark_theme_css = """
         background-color: #1e1e1e;
         border-radius: 8px;
         padding: 1rem;
+    }
+    /* Force file uploader button styling */
+    section[data-testid="stFileUploader"] button,
+    section[data-testid="stFileUploader"] label button,
+    div[data-testid="stFileUploader"] button,
+    div[data-testid="stFileUploader"] label button {
+        background-color: #004182 !important;
+        color: white !important;
+        border: 1px solid #004182 !important;
+    }
+    section[data-testid="stFileUploader"] button:hover,
+    section[data-testid="stFileUploader"] label button:hover,
+    div[data-testid="stFileUploader"] button:hover,
+    div[data-testid="stFileUploader"] label button:hover {
+        background-color: #003366 !important;
+        border: 1px solid #003366 !important;
     }
 </style>
 """
@@ -146,14 +164,16 @@ light_theme_css = """
         background-color: #45a049 !important;
         border-color: #45a049 !important;
     }
-    .stFileUploader > div > div > div > button {
+    .stFileUploader label button, .stFileUploader button, .stFileUploader [data-testid="baseButton-secondary"] {
         background-color: #004182 !important;
         color: white !important;
         border-color: #004182 !important;
+        border: 1px solid #004182 !important;
     }
-    .stFileUploader > div > div > div > button:hover {
+    .stFileUploader label button:hover, .stFileUploader button:hover, .stFileUploader [data-testid="baseButton-secondary"]:hover {
         background-color: #003366 !important;
         border-color: #003366 !important;
+        border: 1px solid #003366 !important;
     }
     .stRadio > div {
         background-color: #f8f9fa;
@@ -177,6 +197,22 @@ light_theme_css = """
         background-color: #f8f9fa;
         border-radius: 8px;
         padding: 1rem;
+    }
+    /* Force file uploader button styling */
+    section[data-testid="stFileUploader"] button,
+    section[data-testid="stFileUploader"] label button,
+    div[data-testid="stFileUploader"] button,
+    div[data-testid="stFileUploader"] label button {
+        background-color: #004182 !important;
+        color: white !important;
+        border: 1px solid #004182 !important;
+    }
+    section[data-testid="stFileUploader"] button:hover,
+    section[data-testid="stFileUploader"] label button:hover,
+    div[data-testid="stFileUploader"] button:hover,
+    div[data-testid="stFileUploader"] label button:hover {
+        background-color: #003366 !important;
+        border: 1px solid #003366 !important;
     }
 </style>
 """
