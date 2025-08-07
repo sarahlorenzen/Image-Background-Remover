@@ -317,11 +317,12 @@ def main():
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Processing mode selection
-    st.markdown("## Choose processing mode:")
+    st.markdown("### Choose processing mode:")
     processing_mode = st.radio(
-        "",
+        "Choose processing mode:",
         ["Single Image", "Batch Processing"],
-        horizontal=True
+        horizontal=True,
+        label_visibility="collapsed"
     )
     
     # File uploader section
