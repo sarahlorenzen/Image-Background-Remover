@@ -215,22 +215,38 @@ light_theme_css = """
         border: 1px solid #b13979 !important;
     }
     /* Theme toggle button styling for light mode - Dark button should have white text */
+    div[data-testid="stButton"] button[key="theme_toggle"],
+    .stButton button[key="theme_toggle"],
     button[key="theme_toggle"] {
         background-color: #262730 !important;
         color: white !important;
         border: 1px solid #262730 !important;
     }
+    div[data-testid="stButton"] button[key="theme_toggle"]:hover,
+    .stButton button[key="theme_toggle"]:hover,
     button[key="theme_toggle"]:hover {
         background-color: #aaaaaa !important;
         border: 1px solid #aaaaaa !important;
         color: white !important;
     }
     /* Radio button text styling for light mode */
-    .stRadio label span {
+    .stRadio label span,
+    .stRadio div[role="radiogroup"] label,
+    .stRadio > div > div > label,
+    div[data-testid="stRadio"] label,
+    .stRadio p,
+    .stRadio div p,
+    .stRadio label p {
         color: #262730 !important;
     }
-    .stRadio div[role="radiogroup"] label {
-        color: #262730 !important;
+    /* Additional CSS to force text color - Updated */
+    * {
+        --text-color: #262730 !important;
+    }
+    /* Force refresh with timestamp */
+    body::before {
+        content: "Updated: 2025-01-07 15:52" !important;
+        display: none !important;
     }
 </style>
 """
