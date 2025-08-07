@@ -292,6 +292,16 @@ light_theme_css = """
     div[data-testid="stAlert"] p {
         color: #262730 !important;
     }
+    /* Results info metric text styling for light theme */
+    .stMetric label,
+    .stMetric div,
+    .stMetric p,
+    div[data-testid="metric-container"] label,
+    div[data-testid="metric-container"] div,
+    div[data-testid="metric-container"] p,
+    div[data-testid="metric-container"] span {
+        color: #262730 !important;
+    }
     /* Additional CSS to force text color - Updated */
     * {
         --text-color: #262730 !important;
