@@ -62,13 +62,13 @@ dark_theme_css = """
         border-color: #45a049 !important;
     }
     .stDownloadButton > button {
-        background-color: #4CAF50 !important;
-        border-color: #4CAF50 !important;
+        background-color: #5239CB !important;
+        border-color: #5239CB !important;
         color: white !important;
     }
     .stDownloadButton > button:hover {
-        background-color: #45a049 !important;
-        border-color: #45a049 !important;
+        background-color: #4934b5 !important;
+        border-color: #4934b5 !important;
     }
     .stFileUploader label button, .stFileUploader button, .stFileUploader [data-testid="baseButton-secondary"] {
         background-color: #004182 !important;
@@ -191,13 +191,13 @@ light_theme_css = """
         color: white !important;
     }
     .stDownloadButton > button {
-        background-color: #4CAF50 !important;
-        border-color: #4CAF50 !important;
+        background-color: #5239CB !important;
+        border-color: #5239CB !important;
         color: white !important;
     }
     .stDownloadButton > button:hover {
-        background-color: #45a049 !important;
-        border-color: #45a049 !important;
+        background-color: #4934b5 !important;
+        border-color: #4934b5 !important;
     }
     .stFileUploader label button, .stFileUploader button, .stFileUploader [data-testid="baseButton-secondary"] {
         background-color: #004182 !important;
