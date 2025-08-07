@@ -41,13 +41,6 @@ dark_theme_css = """
         margin-top: 0.5rem;
         color: #fafafa;
     }
-    /* Reduce empty space above title */
-    .stApp > div:first-child {
-        padding-top: 0.5rem !important;
-    }
-    .block-container {
-        padding-top: 1rem !important;
-    }
     .upload-section {
         border: 2px dashed #555555;
         border-radius: 10px;
@@ -166,13 +159,6 @@ light_theme_css = """
         margin-bottom: 2rem;
         margin-top: 0.5rem;
         color: #262730;
-    }
-    /* Reduce empty space above title */
-    .stApp > div:first-child {
-        padding-top: 0.5rem !important;
-    }
-    .block-container {
-        padding-top: 1rem !important;
     }
     .upload-section {
         border: 2px dashed #cccccc;
