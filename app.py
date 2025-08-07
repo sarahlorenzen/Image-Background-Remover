@@ -221,8 +221,8 @@ light_theme_css = """
         border: 1px solid #262730 !important;
     }
     button[key="theme_toggle"]:hover {
-        background-color: #1a1a1a !important;
-        border: 1px solid #1a1a1a !important;
+        background-color: #aaaaaa !important;
+        border: 1px solid #aaaaaa !important;
         color: white !important;
     }
 </style>
