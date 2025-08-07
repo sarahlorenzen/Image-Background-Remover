@@ -1,6 +1,6 @@
 # Overview
 
-This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application leverages the rembg library to perform automatic background removal using machine learning models. Users can upload images in common formats (PNG, JPG, JPEG) and download the processed images with transparent backgrounds. The app features a clean, user-friendly interface with drag-and-drop functionality and real-time processing feedback.
+This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application uses OpenCV's GrabCut algorithm to perform automatic background removal. Users can upload images in common formats (PNG, JPG, JPEG) and download the processed images with transparent backgrounds. The app features a clean, user-friendly interface with drag-and-drop functionality and real-time processing feedback.
 
 # User Preferences
 
@@ -15,8 +15,9 @@ Preferred communication style: Simple, everyday language.
 - **Layout**: Wide layout configuration with collapsed sidebar for maximum image viewing area
 
 ## Backend Architecture
-- **Core Processing**: Python-based backend using the rembg library for background removal
+- **Core Processing**: Python-based backend using OpenCV's GrabCut algorithm for background removal
 - **Image Processing Pipeline**:
+  - OpenCV for computer vision and background segmentation
   - PIL (Python Imaging Library) for image manipulation and format conversion
   - NumPy for efficient array operations on image data
   - IO module for in-memory file handling to avoid filesystem operations
@@ -35,14 +36,14 @@ Preferred communication style: Simple, everyday language.
 # External Dependencies
 
 ## Core Libraries
-- **rembg**: Primary background removal library providing pre-trained ML models
+- **OpenCV**: Computer vision library providing GrabCut algorithm for background removal
 - **Streamlit**: Web application framework for the user interface
 - **PIL (Pillow)**: Image processing and manipulation library
 - **NumPy**: Numerical computing library for array operations
 
 ## Runtime Dependencies
-- **Python 3.x**: Runtime environment
-- **Machine Learning Models**: Pre-trained models from the rembg library (downloaded automatically)
+- **Python 3.11**: Runtime environment
+- **OpenCV**: Computer vision algorithms for image segmentation
 
 ## Deployment Considerations
 - **Streamlit Cloud**: Designed for easy deployment on Streamlit's hosting platform

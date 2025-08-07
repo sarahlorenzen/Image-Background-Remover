@@ -113,7 +113,7 @@ def remove_background_cv2(image):
     
     # Create RGBA image with transparency
     result_rgba = np.dstack((result_rgb, mask2 * 255))
-    result_pil = Image.fromarray(result_rgba, 'RGBA')
+    result_pil = Image.fromarray(result_rgba.astype('uint8'), 'RGBA')
     
     return result_pil
 
@@ -178,11 +178,11 @@ def display_results(original_image, processed_image, processing_time, filename):
     
     with col1:
         st.markdown("#### Original Image 📷")
-        st.image(original_image, use_column_width=True)
+        st.image(original_image, use_container_width=True)
         
     with col2:
         st.markdown("#### Fixed Image ✨")
-        st.image(processed_image, use_column_width=True)
+        st.image(processed_image, use_container_width=True)
     
     # Prepare download
     prepare_download(processed_image, filename)
