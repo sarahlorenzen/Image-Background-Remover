@@ -608,7 +608,6 @@ def process_image(uploaded_file):
         if input_image.mode != 'RGB':
             input_image = input_image.convert('RGB')
         
-        status_text.text("🔄 Processing image...")
         progress_bar.progress(50)
         
         # Start timing
