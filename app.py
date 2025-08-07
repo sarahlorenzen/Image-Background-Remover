@@ -327,7 +327,6 @@ def main():
     st.markdown("### Upload and download 📂")
     
     if processing_mode == "Single Image":
-        st.markdown("**Upload an image**")
         uploaded_file = st.file_uploader(
             "Drag and drop file here",
             type=['png', 'jpg', 'jpeg'],
