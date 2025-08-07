@@ -113,8 +113,8 @@ dark_theme_css = """
     }
     .stButton:first-child button:hover,
     .element-container .stButton button:hover {
-        background-color: #aaaaaa !important;
-        border: 1px solid #aaaaaa !important;
+        background-color: #686868 !important;
+        border: 1px solid #686868 !important;
         color: white !important;
     }
     /* Force file uploader button styling */
@@ -236,8 +236,8 @@ light_theme_css = """
     }
     .stButton:first-child button:hover,
     .element-container .stButton button:hover {
-        background-color: #aaaaaa !important;
-        border: 1px solid #aaaaaa !important;
+        background-color: #686868 !important;
+        border: 1px solid #686868 !important;
         color: white !important;
     }
     /* Radio button text styling for light mode */
