@@ -117,6 +117,17 @@ dark_theme_css = """
         border: 1px solid #686868 !important;
         color: white !important;
     }
+    /* Process All Images button styling for dark theme */
+    .stButton button[kind="primary"] {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stButton button[kind="primary"]:hover {
+        background-color: #2E7D32 !important;
+        border-color: #2E7D32 !important;
+        color: white !important;
+    }
     /* Force file uploader button styling */
     section[data-testid="stFileUploader"] button,
     section[data-testid="stFileUploader"] label button,
