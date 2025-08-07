@@ -1,6 +1,6 @@
 # Overview
 
-This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application uses an optimized OpenCV GrabCut algorithm with intelligent resizing and error handling to achieve reliable, high-quality background removal. Users can upload images in common formats (PNG, JPG, JPEG) and download the processed images with smooth, transparent backgrounds. The app features a clean, user-friendly interface with drag-and-drop functionality and real-time processing feedback, optimized for fast performance without freezing.
+This is a Streamlit web application that provides an intuitive interface for removing backgrounds from images. The application uses an optimized OpenCV GrabCut algorithm with intelligent resizing and error handling to achieve reliable, high-quality background removal. Users can upload single images or process multiple images in batch mode. The app supports PNG, JPG, and JPEG formats and provides download options for individual images or bulk ZIP downloads. Features include a clean, user-friendly interface with drag-and-drop functionality, real-time processing feedback, and comprehensive batch processing capabilities optimized for fast performance without freezing.
 
 # User Preferences
 

@@ -165,7 +165,7 @@ def simple_background_removal(image):
     
     # Create RGBA
     result_rgba = np.dstack((result, alpha))
-    return Image.fromarray(result_rgba.astype('uint8'), 'RGBA')
+    return Image.fromarray(result_rgba.astype('uint8'))
 
 def remove_background_cv2(image):
     """Optimized background removal using streamlined OpenCV techniques"""
@@ -232,7 +232,7 @@ def remove_background_cv2(image):
     result_rgba = np.dstack((result_rgb, alpha))
     
     # Convert to PIL Image
-    result_pil = Image.fromarray(result_rgba.astype('uint8'), 'RGBA')
+    result_pil = Image.fromarray(result_rgba.astype('uint8'))
     
     return result_pil
 
