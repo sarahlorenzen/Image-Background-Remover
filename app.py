@@ -38,6 +38,7 @@ dark_theme_css = """
     .main-header {
         text-align: center;
         margin-bottom: 2rem;
+        margin-top: 0.5rem;
         color: #fafafa;
     }
     .upload-section {
@@ -156,6 +157,7 @@ light_theme_css = """
     .main-header {
         text-align: center;
         margin-bottom: 2rem;
+        margin-top: 0.5rem;
         color: #262730;
     }
     .upload-section {
