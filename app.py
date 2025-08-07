@@ -214,6 +214,17 @@ light_theme_css = """
         background-color: #b13979 !important;
         border: 1px solid #b13979 !important;
     }
+    /* Theme toggle button styling for light mode - Dark button should have white text */
+    button[key="theme_toggle"] {
+        background-color: #262730 !important;
+        color: white !important;
+        border: 1px solid #262730 !important;
+    }
+    button[key="theme_toggle"]:hover {
+        background-color: #1a1a1a !important;
+        border: 1px solid #1a1a1a !important;
+        color: white !important;
+    }
 </style>
 """
 
