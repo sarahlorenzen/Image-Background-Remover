@@ -104,6 +104,21 @@ dark_theme_css = """
         border-radius: 8px;
         padding: 1rem;
     }
+    /* Theme toggle button styling for dark mode */
+    div[data-testid="stButton"] button[key="theme_toggle"],
+    .stButton button[key="theme_toggle"],
+    button[key="theme_toggle"] {
+        background-color: #262730 !important;
+        color: white !important;
+        border: 1px solid #262730 !important;
+    }
+    div[data-testid="stButton"] button[key="theme_toggle"]:hover,
+    .stButton button[key="theme_toggle"]:hover,
+    button[key="theme_toggle"]:hover {
+        background-color: #aaaaaa !important;
+        border: 1px solid #aaaaaa !important;
+        color: white !important;
+    }
     /* Force file uploader button styling */
     section[data-testid="stFileUploader"] button,
     section[data-testid="stFileUploader"] label button,
@@ -214,7 +229,7 @@ light_theme_css = """
         background-color: #b13979 !important;
         border: 1px solid #b13979 !important;
     }
-    /* Theme toggle button styling for light mode - Dark button should have white text */
+    /* Theme toggle button styling for light mode */
     div[data-testid="stButton"] button[key="theme_toggle"],
     .stButton button[key="theme_toggle"],
     button[key="theme_toggle"] {
