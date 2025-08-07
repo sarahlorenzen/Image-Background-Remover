@@ -179,6 +179,17 @@ light_theme_css = """
         background-color: #45a049 !important;
         border-color: #45a049 !important;
     }
+    /* Process All Images button styling for light theme */
+    .stButton button[kind="primary"] {
+        background-color: #4CAF50 !important;
+        border-color: #4CAF50 !important;
+        color: white !important;
+    }
+    .stButton button[kind="primary"]:hover {
+        background-color: #2E7D32 !important;
+        border-color: #2E7D32 !important;
+        color: white !important;
+    }
     .stDownloadButton > button {
         background-color: #4CAF50 !important;
         border-color: #4CAF50 !important;
