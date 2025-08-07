@@ -317,7 +317,6 @@ def main():
     st.markdown('</div>', unsafe_allow_html=True)
     
     # Processing mode selection
-    st.markdown("### Processing Mode")
     processing_mode = st.radio(
         "Choose processing mode:",
         ["Single Image", "Batch Processing"],
