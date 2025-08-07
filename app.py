@@ -848,7 +848,7 @@ if __name__ == "__main__":
     st.markdown(
         """
         <div style="text-align: center; margin-top: 2rem; padding: 1rem; color: #666;">
-            2025 © Sarah Lorenzen + <a href="https://replit.com/refer/sarahlorenzen" target="_blank" style="color: #004182; text-decoration: underline;">Replit</a> + AI
+            2025 © Made with ❤️ by Sarah Lorenzen using <a href="https://replit.com/refer/sarahlorenzen" target="_blank" style="color: #004182; text-decoration: underline;">Replit</a> + AI
         </div>
         """,
         unsafe_allow_html=True
